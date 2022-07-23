@@ -28,8 +28,8 @@ export function DrawerMenu() {
         <ListItem sx={myStyle.DrawerHeader}>
           <img
             style={{
-              width: "100%",
-              height: "100%",
+              width: "80%",
+              height: "auto",
               objectFit: "cover",
               objectPosition: "center",
             }}
@@ -83,7 +83,6 @@ const MenuName = [
 
 const myStyle = {
   Drawer: {
-    width: "300px",
     display: "flex",
     flexDirection: "column",
     justifyContent: "flex-start",
@@ -98,7 +97,7 @@ const myStyle = {
     justifyContent: "center",
     alignItems: "center",
     width: "100%",
-    height: "70px",
+    height: "80px",
     position: "relative",
     backgroundColor: "#C01416",
   },
@@ -108,11 +107,11 @@ const myStyle = {
     height: "100%",
     objectFit: "contain",
     position: "absolute",
-    display: "none",
   },
 
   List: {
     minWidth: "300px",
+    maxWidth: "340px",
     display: "flex",
     flexDirection: "column",
     justifyContent: "center",

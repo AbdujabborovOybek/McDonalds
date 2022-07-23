@@ -17,7 +17,7 @@ export function NavigationBottom() {
   const dispatch = useDispatch();
 
   return (
-    <Box>
+    <Box >
       <BottomNavigation
         showLabels
         value={value}
