@@ -4,9 +4,23 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="./McDLogo.png" type="image/x-icon" />
     <title>McDonalds</title>
   </head>
   <body>
     <div id="root"></div>
   </body>
+
+  <script>
+    if ("serviceWorker" in navigator) {
+      navigator.serviceWorker.register("./worker.js").then(
+        function (registration) {},
+        function (error) {
+          console.log("Service worker registration failed:", error);
+        }
+      );
+    } else {
+      console.log("Service workers are not supported.");
+    }
+  </script>
 </html>

@@ -1,0 +1,48 @@
+{
+  "short_name": "McDo",
+  "name": "McDonalds",
+  "scope": "/",
+	"start_url": "/",
+  "display": "standalone",
+  "theme_color": "#000000",
+  "background_color": "#ffffff",
+  
+ "icons": [
+   {
+      "src": "McDLogo.png",
+      "sizes": "512x512"
+    },
+    {
+      "src": "McDLogo.png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "McDLogo.png",
+      "sizes": "144x144"
+    },
+    {
+      "src": "McDLogo.png",
+      "sizes": "96x96"
+    },
+    {
+      "src": "McDLogo.png",
+      "sizes": "87x87"
+    },
+    {
+      "src": "McDLogo.png",
+      "sizes": "72x72"
+    },
+
+    {
+      "src": "ios/50.png",
+      "sizes": "50x50"
+    },
+    
+    {
+      "src": "McDLogo.png",
+      "sizes": "48x48"
+    }
+    
+   
+  ]
+}
