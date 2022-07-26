@@ -11,6 +11,7 @@ import { acOpenSwDrawer } from "../../Redux/OpenMenu";
 import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
 import NumberFormat from "react-number-format";
+import { acLoading } from "../../Redux/Loading";
 
 export function SwDrawer() {
   const dispatch = useDispatch();
@@ -89,8 +90,16 @@ export function SwDrawer() {
               style={myStyle.cardActionsBtnAdd}
               variant="contained"
               color="primary"
+              onClick={() => {
+                dispatch(acLoading(true));
+                setTimeout(() => {
+                  dispatch(acLoading(false));
+                  dispatch(acOpenSwDrawer(false));
+                  setCount(1);
+                }, 1500);
+              }}
             >
-              <Typography variant="body1">Savatha joylash</Typography>
+              <Typography variant="body1">Savatga joylash</Typography>
             </Button>
           </CardActions>
         </Box>
