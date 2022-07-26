@@ -6,10 +6,20 @@ import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
-import MailIcon from "@mui/icons-material/Mail";
 import { useSelector, useDispatch } from "react-redux";
 import { acOpenMenu } from "../../Redux/OpenMenu";
 import logo2 from "../../Assets/Icons/logo2.jpg";
+
+import icon1 from "./MenuIcons/breakfast.jpg";
+import icon2 from "./MenuIcons/burgers.jpg";
+import icon3 from "./MenuIcons/combo_meal.jpg";
+import icon4 from "./MenuIcons/D123.jpg";
+import icon5 from "./MenuIcons/desserts_shakes.jpg";
+import icon6 from "./MenuIcons/drinks.jpg";
+import icon7 from "./MenuIcons/full_menu.jpg";
+import icon8 from "./MenuIcons/happy_meal.jpg";
+import icon9 from "./MenuIcons/Menu_LeftRail_mcd.jpg";
+import icon10 from "./MenuIcons/snacks_sides.jpg";
 
 export function DrawerMenu() {
   const openMenu = useSelector((state) => state.reOpenMenu);
@@ -47,7 +57,7 @@ export function DrawerMenu() {
           }}
         />
 
-        {MenuName.map((item, index) => {
+        {menuDrawer.map((item, index) => {
           return (
             <ListItem disablePadding key={index}>
               <ListItemButton
@@ -56,10 +66,15 @@ export function DrawerMenu() {
                   dispatch(acOpenMenu(false));
                 }}
               >
-                <ListItemIcon>
-                  <MailIcon color="primary" />
+                <ListItemIcon
+                  sx={{
+                    width: "40px",
+                    height: "40px",
+                  }}
+                >
+                  <img src={item.icon} alt="" />
                 </ListItemIcon>
-                <ListItemText primary={item} />
+                <ListItemText primary={item.name} />
               </ListItemButton>
             </ListItem>
           );
@@ -68,18 +83,6 @@ export function DrawerMenu() {
     </Drawer>
   );
 }
-
-const MenuName = [
-  "Lorem1",
-  "Lorem2",
-  "Lorem3",
-  "Lorem4",
-  "Lorem5",
-  "Lorem6",
-  "Lorem7",
-  "Lorem8",
-  "Lorem9",
-];
 
 const myStyle = {
   Drawer: {
@@ -119,3 +122,57 @@ const myStyle = {
     paddingTop: "0",
   },
 };
+
+const menuDrawer = [
+  {
+    id: 1,
+    name: "Breakfast",
+    icon: icon1,
+  },
+  {
+    id: 2,
+    name: "Burgers",
+    icon: icon2,
+  },
+  {
+    id: 3,
+    name: "Combo Meal",
+    icon: icon3,
+  },
+  {
+    id: 4,
+    name: "D123",
+    icon: icon4,
+  },
+  {
+    id: 5,
+    name: "Desserts & Shakes",
+    icon: icon5,
+  },
+  {
+    id: 6,
+    name: "Drinks",
+    icon: icon6,
+  },
+  {
+    id: 7,
+
+    name: "Full Menu",
+    icon: icon7,
+  },
+  {
+    id: 8,
+    name: "Happy Meal",
+    icon: icon8,
+  },
+  {
+    id: 9,
+    name: "Menu Left Rail",
+    icon: icon9,
+  },
+  {
+    id: 10,
+    name: "Snacks & Sides",
+    icon: icon10,
+  },
+];
