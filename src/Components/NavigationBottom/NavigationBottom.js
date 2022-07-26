@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
   Box,
   BottomNavigation,
@@ -9,12 +9,17 @@ import LunchDiningIcon from "@mui/icons-material/LunchDining";
 import HomeIcon from "@mui/icons-material/Home";
 import LocalMallIcon from "@mui/icons-material/LocalMall";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { acOpenMenu } from "../../Redux/OpenMenu";
 
 export function NavigationBottom() {
   const [value, setValue] = React.useState(0);
   const dispatch = useDispatch();
+  const cart = useSelector((state) => state.reAddProductToCart);
+
+  useEffect(() => {
+    localStorage.setItem("cart", JSON.stringify(cart));
+  }, [cart]);
 
   return (
     <Box
@@ -49,7 +54,7 @@ export function NavigationBottom() {
         <BottomNavigationAction
           label="Cart"
           icon={
-            <Badge badgeContent={1} color="primary">
+            <Badge badgeContent={cart.length} color="primary">
               <LocalMallIcon />
             </Badge>
           }

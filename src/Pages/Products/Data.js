@@ -13,30 +13,35 @@ export const getData = async () => {
       name: "Sundae Cone",
       img: f11,
       price: "5000",
+      type: "sundae",
     },
     {
       id: 2,
       name: "Hot Caramel Sundae",
       img: f12,
       price: "8000",
+      type: "sundae",
     },
     {
       id: 3,
       name: "Hot Fudge Sundae",
       img: f13,
       price: "9000",
+      type: "sundae",
     },
     {
       id: 4,
       name: "McFlurry® with OREO® cookies",
       img: f14,
       price: "12000",
+      type: "shake",
     },
     {
       id: 5,
       name: "McFlurry® with M&M'S® Candies",
       img: f15,
       price: "8500",
+      
     },
     {
       id: 6,

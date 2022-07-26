@@ -12,6 +12,7 @@ import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
 import NumberFormat from "react-number-format";
 import { acLoading } from "../../Redux/Loading";
+import { acAddProductToCart } from "../../Redux/Cart";
 
 export function SwDrawer() {
   const dispatch = useDispatch();
@@ -95,8 +96,16 @@ export function SwDrawer() {
                 setTimeout(() => {
                   dispatch(acLoading(false));
                   dispatch(acOpenSwDrawer(false));
+                  dispatch(
+                    acAddProductToCart({
+                      id: product.id,
+                      name: product.name,
+                      price: product.price,
+                      quantity: count,
+                    })
+                  );
                   setCount(1);
-                }, 1500);
+                }, 400);
               }}
             >
               <Typography variant="body1">Savatga joylash</Typography>
