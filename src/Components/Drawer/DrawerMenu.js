@@ -1,11 +1,13 @@
 import * as React from "react";
-import { Drawer } from "@mui/material";
-import List from "@mui/material/List";
-import Divider from "@mui/material/Divider";
-import ListItem from "@mui/material/ListItem";
-import ListItemButton from "@mui/material/ListItemButton";
-import ListItemIcon from "@mui/material/ListItemIcon";
-import ListItemText from "@mui/material/ListItemText";
+import {
+  Drawer,
+  Box,
+  List,
+  ListItem,
+  ListItemButton,
+  ListItemIcon,
+  ListItemText,
+} from "@mui/material";
 import { useSelector, useDispatch } from "react-redux";
 import { acOpenMenu } from "../../Redux/OpenMenu";
 import logo2 from "../../Assets/Icons/logo2.jpg";
@@ -35,50 +37,56 @@ export function DrawerMenu() {
       sx={myStyle.Drawer}
     >
       <List sx={myStyle.List}>
-        <ListItem sx={myStyle.DrawerHeader}>
-          <img
-            style={{
-              width: "80%",
-              height: "auto",
-              objectFit: "cover",
-              objectPosition: "center",
-            }}
-            src={logo2}
-            alt=""
-          />
-        </ListItem>
-
-        <Divider
+        <Box
           sx={{
-            margin: "0px",
-            height: "1px",
-            backgroundColor: "#e0e0e0",
             width: "100%",
+            height: "15%",
           }}
-        />
+        >
+          <ListItem sx={myStyle.DrawerHeader}>
+            <img
+              style={{
+                width: "80%",
+                height: "auto",
+                objectFit: "cover",
+                objectPosition: "center",
+              }}
+              src={logo2}
+              alt=""
+            />
+          </ListItem>
+        </Box>
 
-        {menuDrawer.map((item, index) => {
-          return (
-            <ListItem disablePadding key={index}>
-              <ListItemButton
-                variant="contained"
-                onClick={() => {
-                  dispatch(acOpenMenu(false));
+        <Box style={myStyle.BoxMenu}>
+          {menuDrawer.map((item, index) => {
+            return (
+              <ListItem
+                disablePadding
+                key={index}
+                sx={{
+                  height: "60px",
                 }}
               >
-                <ListItemIcon
-                  sx={{
-                    width: "40px",
-                    height: "40px",
+                <ListItemButton
+                  variant="contained"
+                  onClick={() => {
+                    dispatch(acOpenMenu(false));
                   }}
                 >
-                  <img src={item.icon} alt="" />
-                </ListItemIcon>
-                <ListItemText primary={item.name} />
-              </ListItemButton>
-            </ListItem>
-          );
-        })}
+                  <ListItemIcon
+                    sx={{
+                      width: "40px",
+                      height: "40px",
+                    }}
+                  >
+                    <img src={item.icon} alt="" />
+                  </ListItemIcon>
+                  <ListItemText primary={item.name} />
+                </ListItemButton>
+              </ListItem>
+            );
+          })}
+        </Box>
       </List>
     </Drawer>
   );
@@ -115,11 +123,18 @@ const myStyle = {
   List: {
     minWidth: "300px",
     maxWidth: "340px",
+    height: "100%",
     display: "flex",
     flexDirection: "column",
     justifyContent: "center",
     alignItems: "center",
     paddingTop: "0",
+  },
+
+  BoxMenu: {
+    width: "100%",
+    height: "85%",
+    overflowY: "auto",
   },
 };
 
@@ -169,6 +184,31 @@ const menuDrawer = [
     id: 9,
     name: "Menu Left Rail",
     icon: icon9,
+  },
+  {
+    id: 10,
+    name: "Snacks & Sides",
+    icon: icon10,
+  },
+  {
+    id: 10,
+    name: "Snacks & Sides",
+    icon: icon10,
+  },
+  {
+    id: 10,
+    name: "Snacks & Sides",
+    icon: icon10,
+  },
+  {
+    id: 10,
+    name: "Snacks & Sides",
+    icon: icon10,
+  },
+  {
+    id: 10,
+    name: "Snacks & Sides",
+    icon: icon10,
   },
   {
     id: 10,
