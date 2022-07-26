@@ -10,6 +10,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { acOpenSwDrawer } from "../../Redux/OpenMenu";
 import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
+import NumberFormat from "react-number-format";
 
 export function SwDrawer() {
   const dispatch = useDispatch();
@@ -24,6 +25,7 @@ export function SwDrawer() {
         open={open}
         onClose={() => {
           dispatch(acOpenSwDrawer(false));
+          setCount(1);
         }}
         onOpen={() => {}}
         swipeAreaWidth={0}
@@ -47,10 +49,10 @@ export function SwDrawer() {
               variant="contained"
               color="primary"
               onClick={() => {
-                setCount(count >= 15 ? 15 : count + 1);
+                setCount(count <= 1 ? 1 : count - 1);
               }}
             >
-              <AddIcon fontSize="large" />
+              <RemoveIcon fontSize="large" />
             </Button>
             <Typography
               variant="h4"
@@ -66,14 +68,31 @@ export function SwDrawer() {
               variant="contained"
               color="primary"
               onClick={() => {
-                setCount(count <= 1 ? 1 : count - 1);
+                setCount(count >= 15 ? 15 : count + 1);
               }}
             >
-              <RemoveIcon fontSize="large" />
+              <AddIcon fontSize="large" />
             </Button>
           </CardActions>
 
-          <Typography variant="h6">{product.price * count}</Typography>
+          <Typography variant="h5">
+            <NumberFormat
+              value={product.price * count}
+              displayType="text"
+              thousandSeparator={true}
+              suffix=" sum"
+            />
+          </Typography>
+
+          <CardActions style={myStyle.cardActions}>
+            <Button
+              style={myStyle.cardActionsBtnAdd}
+              variant="contained"
+              color="primary"
+            >
+              <Typography variant="body1">Savatha joylash</Typography>
+            </Button>
+          </CardActions>
         </Box>
       </SwipeableDrawer>
     </>
@@ -102,6 +121,11 @@ const myStyle = {
   },
   cardActionsBtn: {
     width: "85px",
+    height: "40px",
+  },
+
+  cardActionsBtnAdd: {
+    width: "100%",
     height: "40px",
   },
 };
