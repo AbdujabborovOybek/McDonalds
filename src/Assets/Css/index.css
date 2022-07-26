@@ -26,6 +26,6 @@ body {
   position: relative !important;
 }
 
-.css-9emuhu-MuiPaper-root-MuiDrawer-paper {
+.MuiDrawer-paperAnchorBottom {
   background: transparent !important;
 }
