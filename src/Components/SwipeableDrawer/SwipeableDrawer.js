@@ -16,11 +16,10 @@ export function SwDrawer() {
           dispatch(acOpenSwDrawer(false));
         }}
         onOpen={() => {}}
-        swipeAreaWidth="0"
+        swipeAreaWidth={0}
         sx={{
           width: "100%",
           height: "300px",
-          borderRadius: "50px !important",
         }}
       >
         <Box style={myStyle.mainBox}>
@@ -36,5 +35,11 @@ const myStyle = {
     width: "100%",
     height: "300px",
     backgroundColor: "#ffffff",
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "space-evenly",
+    alignItems: "center",
+    overflow: "hidden",
+    borderRadius: "20px 20px 0 0",
   },
 };

@@ -25,3 +25,7 @@ body {
   flex-direction: column;
   position: relative !important;
 }
+
+.css-9emuhu-MuiPaper-root-MuiDrawer-paper {
+  background: transparent !important;
+}
