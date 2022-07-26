@@ -159,6 +159,7 @@ const myStyle = {
     width: "100%",
     height: "90%",
     overflowY: "auto",
+    padding: "2% 0 ",
   },
 };
 

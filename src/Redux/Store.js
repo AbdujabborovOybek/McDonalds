@@ -1,8 +1,9 @@
 import { configureStore, combineReducers } from "@reduxjs/toolkit";
-import { reOpenMenu } from "./OpenMenu";
+import { reOpenMenu, reOpenSwDrawer } from "./OpenMenu";
 
 const reducer = combineReducers({
   reOpenMenu,
+  reOpenSwDrawer,
 });
 
 export const Store = configureStore({

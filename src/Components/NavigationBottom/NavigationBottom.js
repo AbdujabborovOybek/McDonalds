@@ -17,7 +17,15 @@ export function NavigationBottom() {
   const dispatch = useDispatch();
 
   return (
-    <Box >
+    <Box
+      sx={{
+        width: "100%",
+        height: "auto",
+        backgroundColor: "#ccc",
+        position: "relative",
+        zIndex: "99999",
+      }}
+    >
       <BottomNavigation
         showLabels
         value={value}
