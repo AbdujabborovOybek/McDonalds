@@ -7,6 +7,7 @@ import {
   ListItemButton,
   ListItemIcon,
   ListItemText,
+  Button,
 } from "@mui/material";
 import { useSelector, useDispatch } from "react-redux";
 import { acOpenMenu } from "../../Redux/OpenMenu";
@@ -22,6 +23,8 @@ import icon7 from "./MenuIcons/full_menu.jpg";
 import icon8 from "./MenuIcons/happy_meal.jpg";
 import icon9 from "./MenuIcons/Menu_LeftRail_mcd.jpg";
 import icon10 from "./MenuIcons/snacks_sides.jpg";
+
+import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 
 export function DrawerMenu() {
   const openMenu = useSelector((state) => state.reOpenMenu);
@@ -40,13 +43,20 @@ export function DrawerMenu() {
         <Box
           sx={{
             width: "100%",
-            height: "15%",
+            height: "10%",
+            display: "flex",
+            flexDirection: "row",
+            justifyContent: "space-between",
+            alignItems: "center",
+            backgroundColor: "#C01416",
+            position: "relative",
+            zIndex: "1",
           }}
         >
           <ListItem sx={myStyle.DrawerHeader}>
             <img
               style={{
-                width: "80%",
+                width: "75%",
                 height: "auto",
                 objectFit: "cover",
                 objectPosition: "center",
@@ -55,6 +65,20 @@ export function DrawerMenu() {
               alt=""
             />
           </ListItem>
+
+          <Button
+            sx={{
+              position: "absolute",
+              right: "0",
+              minWidth: "40px !important",
+              color: "white",
+            }}
+            onClick={() => {
+              dispatch(acOpenMenu(false));
+            }}
+          >
+            <ArrowBackIosIcon />
+          </Button>
         </Box>
 
         <Box style={myStyle.BoxMenu}>
@@ -133,7 +157,7 @@ const myStyle = {
 
   BoxMenu: {
     width: "100%",
-    height: "85%",
+    height: "90%",
     overflowY: "auto",
   },
 };
