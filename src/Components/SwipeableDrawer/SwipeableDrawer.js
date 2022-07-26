@@ -34,13 +34,12 @@ const myStyle = {
   mainBox: {
     width: "100%",
     height: "300px",
-    // backgroundColor: "#ffffff",
+    backgroundColor: "#ffffff",
     display: "flex",
     flexDirection: "column",
     justifyContent: "space-evenly",
     alignItems: "center",
     overflow: "hidden",
     borderRadius: "20px 20px 0 0",
-    backgroundColor: "#171717",
   },
 };
