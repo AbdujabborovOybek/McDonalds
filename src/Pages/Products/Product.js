@@ -1,21 +1,24 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Box } from "@mui/material";
 import { ProductCompnent } from "../../Components/Product/product";
+import { getData } from "./Data";
 
 export function Products() {
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    getData()
+      .then((data) => {
+        setData(data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
+
   return (
     <Box style={myStyle.mainBox}>
-      <ProductCompnent />
-      <ProductCompnent />
-      <ProductCompnent />
-      <ProductCompnent />
-      <ProductCompnent />
-      <ProductCompnent />
-      <ProductCompnent />
-      <ProductCompnent />
-      <ProductCompnent />
-      <ProductCompnent />
-      <ProductCompnent />
+      <ProductCompnent data={data} />
     </Box>
   );
 }
@@ -28,10 +31,11 @@ const myStyle = {
     display: "flex",
     flexDirection: "row",
     flexWrap: "wrap",
-    justifyContent: "flex-start",
+    justifyContent: "center",
     alignItems: "center",
     padding: "3%",
     overflowY: "auto",
-    gap: "1% 3%",
+    alignContent: "flex-start",
+    gap: "1% 2%",
   },
 };

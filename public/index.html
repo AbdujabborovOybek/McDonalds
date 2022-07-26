@@ -8,8 +8,42 @@
     <link rel="manifest" href="./manifest.json" />
     <title>McDonalds</title>
   </head>
+
+  <style>
+    #Error {
+      width: 100%;
+      height: 100vh;
+      background: #ffffff !important;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      display: none;
+    }
+
+    #Error > h3 {
+      font-size: 2rem;
+      font-weight: bold;
+      color: #1976d2;
+      max-width: 70%;
+    }
+
+    @media (min-width: 768px) {
+      #root {
+        display: none !important;
+      }
+
+      #Error {
+        display: flex !important;
+      }
+    }
+  </style>
+
   <body>
     <div id="root"></div>
+    <div id="Error">
+      <h3>Dastur faqat planshet va mobil qurulmalar uchun mo'jjalangan</h3>
+    </div>
   </body>
 
   <script>

@@ -1,11 +1,21 @@
-import React from "react";
-import { SwipeableDrawer, Box } from "@mui/material";
+import React, { useState } from "react";
+import {
+  SwipeableDrawer,
+  Box,
+  Typography,
+  CardActions,
+  Button,
+} from "@mui/material";
 import { useSelector, useDispatch } from "react-redux";
 import { acOpenSwDrawer } from "../../Redux/OpenMenu";
+import AddIcon from "@mui/icons-material/Add";
+import RemoveIcon from "@mui/icons-material/Remove";
 
 export function SwDrawer() {
   const dispatch = useDispatch();
   const open = useSelector((state) => state.reOpenSwDrawer);
+  const product = useSelector((state) => state.reSelectProduct);
+  const [count, setCount] = useState(1);
 
   return (
     <>
@@ -23,7 +33,47 @@ export function SwDrawer() {
         }}
       >
         <Box style={myStyle.mainBox}>
-          <h1>Salom</h1>
+          <Typography
+            variant="h6"
+            sx={{
+              textAlign: "center",
+            }}
+          >
+            {product.name} {product.price}
+          </Typography>
+          <CardActions style={myStyle.cardActions}>
+            <Button
+              style={myStyle.cardActionsBtn}
+              variant="contained"
+              color="primary"
+              onClick={() => {
+                setCount(count >= 15 ? 15 : count + 1);
+              }}
+            >
+              <AddIcon fontSize="large" />
+            </Button>
+            <Typography
+              variant="h4"
+              sx={{
+                width: "50px",
+                textAlign: "center",
+              }}
+            >
+              {count}
+            </Typography>
+            <Button
+              style={myStyle.cardActionsBtn}
+              variant="contained"
+              color="primary"
+              onClick={() => {
+                setCount(count <= 1 ? 1 : count - 1);
+              }}
+            >
+              <RemoveIcon fontSize="large" />
+            </Button>
+          </CardActions>
+
+          <Typography variant="h6">{product.price * count}</Typography>
         </Box>
       </SwipeableDrawer>
     </>
@@ -41,5 +91,17 @@ const myStyle = {
     alignItems: "center",
     overflow: "hidden",
     borderRadius: "20px 20px 0 0",
+    padding: "3% 5%",
+  },
+  cardActions: {
+    width: "100%",
+    height: "50px",
+    display: "flex",
+    justifyContent: "space-evenly",
+    alignItems: "center",
+  },
+  cardActionsBtn: {
+    width: "85px",
+    height: "40px",
   },
 };
