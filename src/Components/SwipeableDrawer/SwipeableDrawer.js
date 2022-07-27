@@ -102,6 +102,7 @@ export function SwDrawer() {
                       name: product.name,
                       price: product.price,
                       quantity: count,
+                      img: product.img,
                     })
                   );
                   setCount(1);
