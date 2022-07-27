@@ -1,4 +1,4 @@
-export const reTypeProduct = (state = "Desserts & Shakes", action) => {
+export const reTypeProduct = (state = "Burgers", action) => {
   switch (action.type) {
     case "SET_TYPE_PRODUCT":
       return action.payload;
