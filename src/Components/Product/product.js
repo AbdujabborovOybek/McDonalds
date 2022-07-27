@@ -1,7 +1,12 @@
 import React from "react";
-import Card from "@mui/material/Card";
-import CardMedia from "@mui/material/CardMedia";
-import { CardActionArea, Typography, Box } from "@mui/material";
+import "./product.css";
+import {
+  CardActionArea,
+  Typography,
+  Box,
+  Card,
+  CardMedia,
+} from "@mui/material";
 import { acOpenSwDrawer } from "../../Redux/OpenMenu";
 import { useDispatch } from "react-redux";
 import { acSelectProduct } from "../../Redux/SelectProduct";
@@ -20,6 +25,7 @@ export function ProductCompnent({ data }) {
               dispatch(acOpenSwDrawer(true));
               dispatch(acSelectProduct(item));
             }}
+            id="productCatd"
           >
             <CardActionArea>
               <CardMedia
@@ -27,6 +33,7 @@ export function ProductCompnent({ data }) {
                 image={item.img}
                 alt="green iguana"
                 style={myStyle.mainBoxImg}
+                id="productCatd"
               />
               <Box style={myStyle.TextItem}>
                 <Typography
@@ -51,14 +58,15 @@ export function ProductCompnent({ data }) {
 
 const myStyle = {
   mainBox: {
-    width: "145px",
-    height: "145px",
+    width: "220px",
+    height: "220px",
     margin: "10px",
     position: "relative",
   },
   mainBoxImg: {
-    width: "145px",
-    height: "145px",
+    width: "220px",
+    height: "220px",
+    padding: "5%",
   },
   TextItem: {
     width: "100%",

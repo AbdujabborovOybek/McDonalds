@@ -18,7 +18,11 @@ export function Products() {
   }, []);
 
   return (
-    <Box style={myStyle.mainBox} className="animate__animated animate__fadeIn">
+    <Box
+      id="mainProductBox"
+      style={myStyle.mainBox}
+      className="animate__animated animate__fadeIn"
+    >
       <ProductCompnent data={data} />
     </Box>
   );
@@ -28,7 +32,6 @@ const myStyle = {
   mainBox: {
     width: "100%",
     height: "calc(100% - 55px)",
-    backgroundColor: "#ccc",
     display: "flex",
     flexDirection: "row",
     flexWrap: "wrap",
@@ -38,5 +41,6 @@ const myStyle = {
     overflowY: "auto",
     alignContent: "flex-start",
     gap: "1% 2%",
+    bagroundColor: "aliceblue",
   },
 };

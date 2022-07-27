@@ -121,7 +121,7 @@ export function SwDrawer() {
 const myStyle = {
   mainBox: {
     width: "100%",
-    height: "300px",
+    height: "320px",
     backgroundColor: "#ffffff",
     display: "flex",
     flexDirection: "column",
@@ -132,6 +132,7 @@ const myStyle = {
     padding: "3% 5%",
   },
   cardActions: {
+    maxWidth: "350px",
     width: "100%",
     height: "50px",
     display: "flex",
