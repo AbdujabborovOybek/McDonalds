@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Box } from "@mui/material";
 import { ProductCompnent } from "../../Components/Product/product";
 import { getData } from "./Data";
+import "animate.css";
 
 export function Products() {
   const [data, setData] = useState([]);
@@ -17,7 +18,7 @@ export function Products() {
   }, []);
 
   return (
-    <Box style={myStyle.mainBox}>
+    <Box style={myStyle.mainBox} className="animate__animated animate__fadeIn">
       <ProductCompnent data={data} />
     </Box>
   );

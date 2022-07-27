@@ -5,6 +5,8 @@ import { DrawerMenu } from "./Components/Drawer/DrawerMenu";
 import { Products } from "./Pages/Products/Product";
 import { SwDrawer } from "./Components/SwipeableDrawer/SwipeableDrawer";
 import { useSelector } from "react-redux";
+import { Route, Routes } from "react-router-dom";
+import { Cart } from "./Pages/Card/Cart";
 
 export function App() {
   const loading = useSelector((state) => state.reLoading);
@@ -12,7 +14,11 @@ export function App() {
   return (
     <>
       <Box sx={MyStyle.BoxContener}>
-        <Products />
+        <Routes>
+          <Route path="/" element={<Products />} />
+          <Route path="*" element={<Products />} />
+          <Route path="/cart" element={<Cart />} />
+        </Routes>
         <Paper sx={MyStyle.Paper} elevation={3}>
           <NavigationBottom />
         </Paper>

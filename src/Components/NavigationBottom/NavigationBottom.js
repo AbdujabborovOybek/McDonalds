@@ -11,11 +11,13 @@ import LocalMallIcon from "@mui/icons-material/LocalMall";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import { useDispatch, useSelector } from "react-redux";
 import { acOpenMenu } from "../../Redux/OpenMenu";
+import { useNavigate } from "react-router-dom";
 
 export function NavigationBottom() {
   const [value, setValue] = React.useState(0);
   const dispatch = useDispatch();
   const cart = useSelector((state) => state.reAddProductToCart);
+  const navigate = useNavigate();
 
   useEffect(() => {
     localStorage.setItem("cart", JSON.stringify(cart));
@@ -48,9 +50,16 @@ export function NavigationBottom() {
           icon={<LunchDiningIcon />}
           onClick={() => {
             dispatch(acOpenMenu(true));
+            navigate("/");
           }}
         />
-        <BottomNavigationAction label="Home" icon={<HomeIcon />} />
+        <BottomNavigationAction
+          label="Home"
+          icon={<HomeIcon />}
+          onClick={() => {
+            navigate("/");
+          }}
+        />
         <BottomNavigationAction
           label="Cart"
           icon={
@@ -58,6 +67,9 @@ export function NavigationBottom() {
               <LocalMallIcon />
             </Badge>
           }
+          onClick={() => {
+            navigate("/cart");
+          }}
         />
 
         <BottomNavigationAction label="Profile" icon={<AccountCircleIcon />} />
