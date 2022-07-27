@@ -44,6 +44,9 @@ export const reAddProductToCart = (state = cart, action) => {
       });
       return [...state];
 
+    case "CLEAR_CART":
+      return [];
+
     default:
       return state;
   }
@@ -67,4 +70,8 @@ export const acIncProductInCard = (id) => ({
 export const acDecProductInCard = (id) => ({
   type: "DEC_PRODUCT_IN_CART",
   payload: id,
+});
+
+export const acClearCart = () => ({
+  type: "CLEAR_CART",
 });

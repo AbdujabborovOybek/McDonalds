@@ -3,9 +3,11 @@ import { Box } from "@mui/material";
 import { ProductCompnent } from "../../Components/Product/product";
 import { getData } from "./Data";
 import "animate.css";
+import { useSelector } from "react-redux";
 
 export function Products() {
   const [data, setData] = useState([]);
+  const type = useSelector((state) => state.reTypeProduct);
 
   useEffect(() => {
     getData()
@@ -17,13 +19,20 @@ export function Products() {
       });
   }, []);
 
+  const result = data.filter((item) => {
+    if (item.type === type) {
+      return item;
+    }
+    return null;
+  });
+
   return (
     <Box
       id="mainProductBox"
       style={myStyle.mainBox}
       className="animate__animated animate__fadeIn"
     >
-      <ProductCompnent data={data} />
+      <ProductCompnent data={result} />
     </Box>
   );
 }

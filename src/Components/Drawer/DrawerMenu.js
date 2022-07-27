@@ -23,8 +23,8 @@ import icon7 from "./MenuIcons/full_menu.jpg";
 import icon8 from "./MenuIcons/happy_meal.jpg";
 import icon9 from "./MenuIcons/Menu_LeftRail_mcd.jpg";
 import icon10 from "./MenuIcons/snacks_sides.jpg";
-
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
+import { acTypeProduct } from "../../Redux/TypeProduct";
 
 export function DrawerMenu() {
   const openMenu = useSelector((state) => state.reOpenMenu);
@@ -95,6 +95,7 @@ export function DrawerMenu() {
                   variant="contained"
                   onClick={() => {
                     dispatch(acOpenMenu(false));
+                    dispatch(acTypeProduct(item.name));
                   }}
                 >
                   <ListItemIcon

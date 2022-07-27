@@ -3,6 +3,7 @@ import { reOpenMenu, reOpenSwDrawer } from "./OpenMenu";
 import { reSelectProduct } from "./SelectProduct";
 import { reLoading } from "./Loading";
 import { reAddProductToCart } from "./Cart";
+import { reTypeProduct } from "./TypeProduct";
 
 const reducer = combineReducers({
   reOpenMenu,
@@ -10,6 +11,7 @@ const reducer = combineReducers({
   reSelectProduct,
   reLoading,
   reAddProductToCart,
+  reTypeProduct,
 });
 
 export const Store = configureStore({
