@@ -7,6 +7,7 @@ import noCartBg from "../../Assets/Images/noCart.png";
 import NumberFormat from "react-number-format";
 import { CardItem } from "../../Components/CardItem/CardItem";
 import { useSnackbar } from "notistack";
+import { acLoading } from "../../Redux/Loading";
 
 export function Cart() {
   const dispatch = useDispatch();
@@ -65,9 +66,15 @@ export function Cart() {
               variant="contained"
               color="primary"
               onClick={() => {
-                enqueueSnackbar("Buyurtma Qabul qilindi", {
-                  variant: "success",
-                });
+                dispatch(acLoading(true));
+
+                setTimeout(() => {
+                  dispatch(acLoading(false));
+                  enqueueSnackbar("Buyurtma Qabul qilindi", {
+                    variant: "success",
+                  });
+                  dispatch(acClearCart());
+                }, 500);
               }}
             >
               <Typography variant="p">Xarid qilish</Typography>
