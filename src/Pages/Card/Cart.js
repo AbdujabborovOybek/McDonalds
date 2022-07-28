@@ -18,9 +18,18 @@ import { useSnackbar } from "notistack";
 import { acLoading } from "../../Redux/Loading";
 import CloseIcon from "@mui/icons-material/Close";
 import { acUser } from "../../Redux/User";
+import { useNavigate } from "react-router-dom";
+
+import Radio from "@mui/material/Radio";
+import RadioGroup from "@mui/material/RadioGroup";
+import FormControlLabel from "@mui/material/FormControlLabel";
+import FormControl from "@mui/material/FormControl";
+import FormLabel from "@mui/material/FormLabel";
+import AddLocationIcon from "@mui/icons-material/AddLocation";
 
 export function Cart() {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const cart = useSelector((state) => state.reAddProductToCart);
   const user = useSelector((state) => state.reUser);
   const [totalPayment, setTotalPayment] = useState(0);
@@ -211,6 +220,69 @@ export function Cart() {
             </Button>
           </Box>
         </DialogActions>
+      </Dialog>
+
+      <Dialog open={true}>
+        <DialogContent
+          sx={{
+            width: "100%",
+            minWidth: "240px !important",
+          }}
+        >
+          <FormControl>
+            <FormLabel id="demo-radio-buttons-group-label">
+              Manzilni tanlang
+            </FormLabel>
+            <RadioGroup
+              aria-labelledby="demo-radio-buttons-group-label"
+              defaultValue="female"
+              name="radio-buttons-group"
+            >
+              <FormControlLabel
+                value="5a"
+                control={<Radio />}
+                label="5a mik-rayon"
+              />
+              <FormControlLabel
+                value="4"
+                control={<Radio />}
+                label="5 mik-rayon"
+              />
+              <FormControlLabel
+                value="2"
+                control={<Radio />}
+                label="2 mik-rayon"
+              />
+              <FormControlLabel
+                value="3"
+                control={<Radio />}
+                label="3 mik-rayon"
+              />
+            </RadioGroup>
+
+            <Typography
+              variant="p"
+              sx={{
+                color: "#CB2C32",
+                width: "100%",
+                height: "30px",
+                textAlign: "center",
+                display: "flex",
+                flexDirection: "row",
+                alignItems: "center",
+                justifyContent: "center",
+                gap: "5px",
+              }}
+              onClick={() => {
+                navigate("/map", {
+                  replace: true,
+                });
+              }}
+            >
+              <AddLocationIcon /> Manzilni tanlang
+            </Typography>
+          </FormControl>
+        </DialogContent>
       </Dialog>
     </>
   );
