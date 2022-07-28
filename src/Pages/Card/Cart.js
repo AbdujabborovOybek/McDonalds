@@ -6,7 +6,6 @@ import {
   Button,
   Dialog,
   DialogContent,
-  TextField,
   DialogActions,
   IconButton,
 } from "@mui/material";
@@ -18,6 +17,7 @@ import { CardItem } from "../../Components/CardItem/CardItem";
 import { useSnackbar } from "notistack";
 import { acLoading } from "../../Redux/Loading";
 import CloseIcon from "@mui/icons-material/Close";
+import { acUser } from "../../Redux/User";
 
 export function Cart() {
   const dispatch = useDispatch();
@@ -122,6 +122,10 @@ export function Cart() {
         onClose={() => {
           setOpen(false);
         }}
+        style={{
+          width: "100%",
+          minWidth: "300px !important",
+        }}
       >
         <IconButton
           onClick={() => {
@@ -135,29 +139,68 @@ export function Cart() {
         >
           <CloseIcon />
         </IconButton>
-        <DialogContent>
-          <Typography variant="p">
-            Xaridni Amalga oshirish uchun tizimga kirishingiz kerak!!!
+        <DialogContent style={myStyle.dialogContent}>
+          <Typography
+            sx={{
+              width: "100%",
+              textAlign: "center",
+              padding: "3%",
+            }}
+            variant="p"
+          >
+            Tizimga Kiring
           </Typography>
         </DialogContent>
         <DialogActions>
-          <Box component="form" style={myStyle.formLogin}>
-            <TextField
+          <Box
+            component="form"
+            style={myStyle.formLogin}
+            onSubmit={(e) => {
+              e.preventDefault();
+              dispatch(acLoading(true));
+
+              setTimeout(() => {
+                dispatch(
+                  acUser({
+                    id: new Date().getTime(),
+                    user: e.target.user.value,
+                    phine: e.target.phone.value,
+                  })
+                );
+
+                localStorage.setItem(
+                  "user",
+                  JSON.stringify({
+                    id: new Date().getTime(),
+                    user: e.target.user.value,
+                    phine: e.target.phone.value,
+                  })
+                );
+
+                enqueueSnackbar("Xush kelibsiz", {
+                  variant: "success",
+                });
+
+                setOpen(false);
+                dispatch(acLoading(false));
+              }, 1000);
+            }}
+          >
+            <input
               style={myStyle.formLoginInput}
-              id="outlined-basic"
-              label="Isim Familya"
-              variant="outlined"
+              type="text"
+              placeholder="Ism Familiya"
+              name="user"
+              autoComplete="off"
             />
-            <TextField
+            <NumberFormat
               style={myStyle.formLoginInput}
-              id="outlined-basic"
-              label="Telefon"
-              variant="outlined"
-              sx={{
-                marginTop: "15px",
-              }}
-              type="number"
+              format="+998 (##) ### ####"
+              allowEmptyFormatting
+              name="phone"
+              autoComplete="off"
             />
+
             <Button
               variant="contained"
               color="primary"
@@ -229,14 +272,30 @@ const myStyle = {
     alignItems: "center",
   },
 
-  formLoginInput: {
+  dialogContent: {
     width: "100%",
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    padding: "2%",
+  },
+
+  formLoginInput: {
+    minWidth: "240px",
+    width: "100%",
+    height: "47px",
     letterSpacing: "3px",
+    border: "2px solid #cccccc",
+    borderRadius: "5px",
+    margin: "5px 0",
+    outline: "none",
+    fontSize: "16px",
+    padding: "0 4%",
   },
 
   formLoginButton: {
     width: "100%",
-    height: "50px",
-    marginTop: "15px",
+    height: "47px",
+    marginTop: "5px",
   },
 };

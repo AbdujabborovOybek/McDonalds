@@ -27,10 +27,7 @@ export function App() {
       </Box>
       <DrawerMenu />
       <SwDrawer />
-      <Backdrop
-        sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }}
-        open={loading}
-      >
+      <Backdrop sx={{ color: "#fff", zIndex: "99999999999999" }} open={loading}>
         <CircularProgress color="inherit" />
       </Backdrop>
     </>
