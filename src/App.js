@@ -7,6 +7,7 @@ import { SwDrawer } from "./Components/SwipeableDrawer/SwipeableDrawer";
 import { useSelector } from "react-redux";
 import { Route, Routes } from "react-router-dom";
 import { Cart } from "./Pages/Card/Cart";
+import { Profile } from "./Pages/Profile/Profile";
 
 export function App() {
   const loading = useSelector((state) => state.reLoading);
@@ -18,6 +19,7 @@ export function App() {
           <Route path="/" element={<Products />} />
           <Route path="*" element={<Products />} />
           <Route path="/cart" element={<Cart />} />
+          <Route path="/profile" element={<Profile />} />
         </Routes>
         <Paper sx={MyStyle.Paper} elevation={3}>
           <NavigationBottom />

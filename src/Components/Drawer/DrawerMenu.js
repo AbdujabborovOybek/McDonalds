@@ -16,10 +16,9 @@ import logo2 from "../../Assets/Icons/logo2.jpg";
 import icon1 from "./MenuIcons/breakfast.jpg";
 import icon2 from "./MenuIcons/burgers.jpg";
 import icon3 from "./MenuIcons/combo_meal.jpg";
-import icon4 from "./MenuIcons/D123.jpg";
 import icon5 from "./MenuIcons/desserts_shakes.jpg";
 import icon6 from "./MenuIcons/drinks.jpg";
-import icon7 from "./MenuIcons/full_menu.jpg";
+import icon7 from "./MenuIcons/chicken_sandwiches.jpg";
 import icon8 from "./MenuIcons/happy_meal.jpg";
 import icon9 from "./MenuIcons/Menu_LeftRail_mcd.jpg";
 import icon10 from "./MenuIcons/snacks_sides.jpg";
@@ -95,7 +94,7 @@ export function DrawerMenu() {
                   variant="contained"
                   onClick={() => {
                     dispatch(acOpenMenu(false));
-                    dispatch(acTypeProduct(item.name));
+                    dispatch(acTypeProduct(item.type));
                   }}
                 >
                   <ListItemIcon
@@ -169,76 +168,67 @@ const menuDrawer = [
     id: 1,
     name: "Breakfast",
     icon: icon1,
+    type: "mc_breakfast",
   },
   {
     id: 2,
     name: "Burgers",
     icon: icon2,
+    type: "mc_burgers",
   },
   {
     id: 3,
     name: "Combo Meal",
     icon: icon3,
-  },
-  {
-    id: 4,
-    name: "D123",
-    icon: icon4,
+    type: "mc_combo_meal",
   },
   {
     id: 5,
     name: "Desserts & Shakes",
     icon: icon5,
+    type: "mc_dessert_shakes",
   },
   {
     id: 6,
     name: "Drinks",
     icon: icon6,
+    type: "mc_beverages",
   },
   {
     id: 7,
-
-    name: "Full Menu",
+    name: "Featured Favorites",
     icon: icon7,
+    type: "mc_chicken_sandwiches",
   },
   {
     id: 8,
     name: "Happy Meal",
     icon: icon8,
+    type: "mc_happy_meal",
   },
   {
     id: 9,
     name: "Menu Left Rail",
     icon: icon9,
+    type: "mc_cafe_bakery",
   },
   {
     id: 10,
     name: "Snacks & Sides",
     icon: icon10,
-  },
-  {
-    id: 10,
-    name: "Snacks & Sides",
-    icon: icon10,
-  },
-  {
-    id: 10,
-    name: "Snacks & Sides",
-    icon: icon10,
-  },
-  {
-    id: 10,
-    name: "Snacks & Sides",
-    icon: icon10,
-  },
-  {
-    id: 10,
-    name: "Snacks & Sides",
-    icon: icon10,
-  },
-  {
-    id: 10,
-    name: "Snacks & Sides",
-    icon: icon10,
+    type: "mc_snacks_sides",
   },
 ];
+
+// [
+//   "mc_dessert_shakes",
+//   "mc_beverages",
+//   "mc_breakfast",
+//   "mc_burgers",
+//   "mc_chicken_sandwiches",
+//   "mc_combo_meal",
+//   "mc_happy_meal",
+//   "mc_cafe_bakery",
+//   "mc_snacks_sides",
+//   "mc_cafe_drinks",
+// ];

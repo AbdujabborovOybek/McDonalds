@@ -1,6 +1,15 @@
 import React, { useEffect, useState } from "react";
 import "animate.css";
-import { Box, Typography, Button } from "@mui/material";
+import {
+  Box,
+  Typography,
+  Button,
+  Dialog,
+  DialogContent,
+  TextField,
+  DialogActions,
+  IconButton,
+} from "@mui/material";
 import { useSelector, useDispatch } from "react-redux";
 import { acClearCart } from "../../Redux/Cart";
 import noCartBg from "../../Assets/Images/noCart.png";
@@ -8,12 +17,15 @@ import NumberFormat from "react-number-format";
 import { CardItem } from "../../Components/CardItem/CardItem";
 import { useSnackbar } from "notistack";
 import { acLoading } from "../../Redux/Loading";
+import CloseIcon from "@mui/icons-material/Close";
 
 export function Cart() {
   const dispatch = useDispatch();
   const cart = useSelector((state) => state.reAddProductToCart);
+  const user = useSelector((state) => state.reUser);
   const [totalPayment, setTotalPayment] = useState(0);
   const { enqueueSnackbar } = useSnackbar();
+  const [open, setOpen] = useState(false);
 
   useEffect(() => {
     let total = 0;
@@ -66,15 +78,18 @@ export function Cart() {
               variant="contained"
               color="primary"
               onClick={() => {
-                dispatch(acLoading(true));
-
-                setTimeout(() => {
-                  dispatch(acLoading(false));
-                  enqueueSnackbar("Buyurtma Qabul qilindi", {
-                    variant: "success",
-                  });
-                  dispatch(acClearCart());
-                }, 500);
+                if (user.id) {
+                  dispatch(acLoading(true));
+                  setTimeout(() => {
+                    dispatch(acLoading(false));
+                    enqueueSnackbar("Buyurtma Qabul qilindi", {
+                      variant: "success",
+                    });
+                    dispatch(acClearCart());
+                  }, 500);
+                } else {
+                  setOpen(true);
+                }
               }}
             >
               <Typography variant="p">Xarid qilish</Typography>
@@ -101,6 +116,59 @@ export function Cart() {
           </Typography>
         </Box>
       )}
+
+      <Dialog
+        open={open}
+        onClose={() => {
+          setOpen(false);
+        }}
+      >
+        <IconButton
+          onClick={() => {
+            setOpen(false);
+          }}
+          sx={{
+            position: "absolute",
+            top: "0px",
+            right: "0px",
+          }}
+        >
+          <CloseIcon />
+        </IconButton>
+        <DialogContent>
+          <Typography variant="p">
+            Xaridni Amalga oshirish uchun tizimga kirishingiz kerak!!!
+          </Typography>
+        </DialogContent>
+        <DialogActions>
+          <Box component="form" style={myStyle.formLogin}>
+            <TextField
+              style={myStyle.formLoginInput}
+              id="outlined-basic"
+              label="Isim Familya"
+              variant="outlined"
+            />
+            <TextField
+              style={myStyle.formLoginInput}
+              id="outlined-basic"
+              label="Telefon"
+              variant="outlined"
+              sx={{
+                marginTop: "15px",
+              }}
+              type="number"
+            />
+            <Button
+              variant="contained"
+              color="primary"
+              style={myStyle.formLoginButton}
+              type="submit"
+            >
+              <Typography variant="p">Tizimga kirish</Typography>
+            </Button>
+          </Box>
+        </DialogActions>
+      </Dialog>
     </>
   );
 }
@@ -150,5 +218,25 @@ const myStyle = {
     justifyContent: "center",
     alignItems: "center",
     padding: "5%",
+  },
+
+  formLogin: {
+    width: "100%",
+    height: "auto",
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+
+  formLoginInput: {
+    width: "100%",
+    letterSpacing: "3px",
+  },
+
+  formLoginButton: {
+    width: "100%",
+    height: "50px",
+    marginTop: "15px",
   },
 };

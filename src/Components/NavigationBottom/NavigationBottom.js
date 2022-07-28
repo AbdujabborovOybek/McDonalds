@@ -72,7 +72,13 @@ export function NavigationBottom() {
           }}
         />
 
-        <BottomNavigationAction label="Profile" icon={<AccountCircleIcon />} />
+        <BottomNavigationAction
+          label="Profile"
+          icon={<AccountCircleIcon />}
+          onClick={() => {
+            navigate("/profile");
+          }}
+        />
       </BottomNavigation>
     </Box>
   );
