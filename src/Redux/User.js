@@ -4,6 +4,13 @@ export const reUser = (state = user, action) => {
   switch (action.type) {
     case "SET_USER":
       return action.payload;
+
+    case "EDIT_USER":
+      return {
+        ...state,
+        ...action.payload,
+      };
+
     default:
       return state;
   }
@@ -11,5 +18,10 @@ export const reUser = (state = user, action) => {
 
 export const acUser = (user) => ({
   type: "SET_USER",
+  payload: user,
+});
+
+export const acEditUser = (user) => ({
+  type: "EDIT_USER",
   payload: user,
 });

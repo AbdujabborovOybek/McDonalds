@@ -44,7 +44,7 @@ const myStyle = {
     display: "flex",
     flexDirection: "row",
     flexWrap: "wrap",
-    justifyContent: "flex-start",
+    justifyContent: "center",
     alignItems: "center",
     padding: "3%",
     overflowY: "auto",
