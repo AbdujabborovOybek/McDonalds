@@ -16,15 +16,25 @@ import LogoutIcon from "@mui/icons-material/Logout";
 import { useDispatch } from "react-redux";
 import { acEditUser } from "../../Redux/User";
 import { acLoading } from "../../Redux/Loading";
+import { useNavigate } from "react-router-dom";
+import { Order } from "../../Components/Order/Order";
 
 export function Profile() {
   const user = useSelector((state) => state.reUser);
   const dispatch = useDispatch();
   const [editUser, setEditUser] = useState({ ...user });
   const [open, setOpen] = useState(false);
+  const [loginModal, setLoginModal] = useState(user.user ? false : true);
+  const navigate = useNavigate();
 
   return (
-    <Box className="animate__animated animate__fadeIn">
+    <Box
+      className="animate__animated animate__fadeIn"
+      sx={{
+        width: "100%",
+        height: "100%",
+      }}
+    >
       <Box style={myStyles.header}>
         <Typography variant="h5">{user.user}</Typography>
         <Typography>
@@ -42,6 +52,10 @@ export function Profile() {
         >
           <EditIcon />
         </IconButton>
+      </Box>
+
+      <Box style={myStyles.body}>
+        <Order />
       </Box>
 
       <Dialog
@@ -129,6 +143,54 @@ export function Profile() {
           </Box>
         </DialogContent>
       </Dialog>
+
+      <Dialog open={loginModal}>
+        <IconButton
+          sx={{
+            position: "absolute",
+            right: "0",
+            top: "0",
+          }}
+          onClick={() => {
+            if (user.user) {
+              setLoginModal(false);
+            } else {
+              navigate("/");
+            }
+          }}
+        >
+          <CloseIcon />
+        </IconButton>
+        <DialogContent
+          sx={{
+            width: "100%",
+            padding: "10% 5% 5%",
+          }}
+        >
+          <Box component="form">
+            <input
+              style={myStyles.editProfileInput}
+              type="text"
+              placeholder="Ism Familya"
+            />
+            <NumberFormat
+              style={myStyles.editProfileInput}
+              format="+998 (##) ### ####"
+              allowEmptyFormatting
+              name="phone"
+              autoComplete="off"
+            />
+
+            <Button
+              variant="contained"
+              color="primary"
+              style={myStyles.loginProfileBtn}
+            >
+              Tizimga kirish
+            </Button>
+          </Box>
+        </DialogContent>
+      </Dialog>
     </Box>
   );
 }
@@ -150,6 +212,19 @@ const myStyles = {
     bottom: "0",
     right: "0",
     color: "white",
+  },
+
+  body: {
+    width: "100%",
+    height: "calc(100% - 160px)",
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
+    alignContent: "flex-start",
+    flexWrap: "wrap",
+    overflow: "auto",
+    padding: "3% 0",
   },
 
   editProfile: {
@@ -193,5 +268,11 @@ const myStyles = {
   editProfileButtonEdite: {
     width: "80%",
     height: "35px",
+  },
+
+  loginProfileBtn: {
+    width: "100%",
+    height: "40px",
+    margin: "2% 0",
   },
 };

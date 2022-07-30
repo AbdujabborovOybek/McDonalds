@@ -18,6 +18,7 @@ import { useSnackbar } from "notistack";
 import { acLoading } from "../../Redux/Loading";
 import CloseIcon from "@mui/icons-material/Close";
 import { acUser } from "../../Redux/User";
+import { useNavigate } from "react-router-dom";
 
 export function Cart() {
   const dispatch = useDispatch();
@@ -26,6 +27,7 @@ export function Cart() {
   const [totalPayment, setTotalPayment] = useState(0);
   const { enqueueSnackbar } = useSnackbar();
   const [open, setOpen] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     let total = 0;
@@ -86,6 +88,7 @@ export function Cart() {
                       variant: "success",
                     });
                     dispatch(acClearCart());
+                    navigate("/profile");
                   }, 500);
                 } else {
                   setOpen(true);
@@ -164,7 +167,7 @@ export function Cart() {
                   acUser({
                     id: new Date().getTime(),
                     user: e.target.user.value,
-                    phine: e.target.phone.value,
+                    phone: e.target.phone.value,
                   })
                 );
 
