@@ -135,7 +135,7 @@ export function Order() {
                     onClick={() => {
                       dispatch(acLoading(true));
                       setTimeout(() => {
-                        if (order.length !== 0) {
+                        if (order.length === 0) {
                           navigate("/");
                         }
                         dispatch(acRemoveFromOrder(item.time));
