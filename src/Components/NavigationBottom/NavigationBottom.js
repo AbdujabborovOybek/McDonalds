@@ -17,11 +17,15 @@ export function NavigationBottom() {
   const [value, setValue] = React.useState(0);
   const dispatch = useDispatch();
   const cart = useSelector((state) => state.reAddProductToCart);
+  const order = useSelector((state) => state.reOrder);
   const navigate = useNavigate();
 
   useEffect(() => {
     localStorage.setItem("cart", JSON.stringify(cart));
   }, [cart]);
+  useEffect(() => {
+    localStorage.setItem("order", JSON.stringify(order));
+  }, [order]);
 
   return (
     <Box
@@ -74,7 +78,11 @@ export function NavigationBottom() {
 
         <BottomNavigationAction
           label="Profile"
-          icon={<AccountCircleIcon />}
+          icon={
+            <Badge badgeContent={order.length} color="primary">
+              <AccountCircleIcon />
+            </Badge>
+          }
           onClick={() => {
             navigate("/profile");
           }}

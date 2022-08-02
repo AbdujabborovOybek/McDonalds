@@ -5,6 +5,7 @@ import { reLoading } from "./Loading";
 import { reAddProductToCart } from "./Cart";
 import { reTypeProduct } from "./TypeProduct";
 import { reUser } from "./User";
+import { reOrder } from "./Order";
 
 const reducer = combineReducers({
   reOpenMenu,
@@ -14,6 +15,7 @@ const reducer = combineReducers({
   reAddProductToCart,
   reTypeProduct,
   reUser,
+  reOrder,
 });
 
 export const Store = configureStore({

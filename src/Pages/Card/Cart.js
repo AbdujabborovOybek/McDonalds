@@ -19,6 +19,7 @@ import { acLoading } from "../../Redux/Loading";
 import CloseIcon from "@mui/icons-material/Close";
 import { acUser } from "../../Redux/User";
 import { useNavigate } from "react-router-dom";
+import { acAddToOrder } from "../../Redux/Order";
 
 export function Cart() {
   const dispatch = useDispatch();
@@ -38,6 +39,11 @@ export function Cart() {
     });
     setTotalPayment(total);
   }, [cart]);
+
+  const newOrder = {
+    time: new Date().getTime(),
+    order: [...cart],
+  };
 
   return (
     <>
@@ -82,13 +88,14 @@ export function Cart() {
               onClick={() => {
                 if (user.id) {
                   dispatch(acLoading(true));
-                  setTimeout(() => {
+                  setTimeout(async () => {
                     dispatch(acLoading(false));
                     enqueueSnackbar("Buyurtma Qabul qilindi", {
                       variant: "success",
                     });
-                    dispatch(acClearCart());
-                    navigate("/profile");
+                    await dispatch(acAddToOrder(newOrder));
+                    await dispatch(acClearCart());
+                    await navigate("/profile");
                   }, 500);
                 } else {
                   setOpen(true);
