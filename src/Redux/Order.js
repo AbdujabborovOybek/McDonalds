@@ -1,7 +1,5 @@
 const order = JSON.parse(localStorage.getItem("order") || "[]");
 
-console.log(order);
-
 // create reduser for add item to order
 export const reOrder = (state = order, action) => {
   switch (action.type) {

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { styled } from "@mui/material/styles";
 import {
   Card,
@@ -24,11 +24,32 @@ import { useDispatch } from "react-redux";
 import { acLoading } from "../../Redux/Loading";
 import { useSnackbar } from "notistack";
 import { useNavigate } from "react-router-dom";
+import { useTimer } from "react-timer-hook";
+
+function MyTimer({ expiryTimestamp }) {
+  const { seconds, minutes } = useTimer({
+    expiryTimestamp,
+    onExpire: () => console.warn("onExpire called"),
+  });
+
+    useEffect(() => {
+      localStorage.setItem("time", minutes * 60 + seconds);
+    });
+
+  return (
+    <>
+      <span>{minutes >= 10 ? minutes : `0${minutes}`}</span>:
+      <span>{seconds >= 10 ? seconds : `0${seconds}`}</span>
+    </>
+  );
+}
+
+
 
 export function Order() {
   const [expanded, setExpanded] = useState(false);
   const user = useSelector((state) => state.reUser);
-  // const [timer, setTimer] = useState(0);
+  const [timer, setTimer] = useState(0);
   const nowDate = new Date().toLocaleDateString("en-GB", {
     timeZone: "Asia/Tashkent",
   });
@@ -36,23 +57,11 @@ export function Order() {
   const order = useSelector((state) => state.reOrder);
   const { enqueueSnackbar } = useSnackbar();
   const navigate = useNavigate();
+  
+  const time = new Date();
+  console.log(parseInt(localStorage.getItem("time")));
 
-  // const time = 1659182592087 + 1800000;
-  // const myTimer = () => {
-  //   const countDownDate = new Date(time).getTime();
-  //   const now = new Date().getTime();
-  //   const distance = countDownDate - now;
-  //   const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-  //   const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-  //   return `${minutes < 10 ? `0${minutes}` : minutes} : ${
-  //     seconds < 10 ? `0${seconds}` : seconds
-  //   }`;
-  // };
-
-  // setInterval(() => {
-  //   setTimer(myTimer());
-  // }, 1000);
-
+  time.setSeconds(time.getSeconds() + parseInt(localStorage.getItem("time"))||1800);
   return (
     <>
       {order.length !== 0 ? (
@@ -73,7 +82,7 @@ export function Order() {
                   </Avatar>
                 }
                 title={user.user}
-                subheader={`Buyurtma sanasi: ${nowDate}`}
+                subheader={<MyTimer expiryTimestamp={time} />}
               />
               <CardMedia
                 component="img"
@@ -82,9 +91,7 @@ export function Order() {
                 alt="Paella dish"
               />
               <CardContent>
-                <Typography variant="body2" color="text.secondary">
-                  {/* {timer} */}
-                </Typography>
+                <Typography variant="body2" color="text.secondary"></Typography>
               </CardContent>
               <CardActions disableSpacing>
                 <IconButton aria-label="share">
@@ -170,6 +177,7 @@ export function Order() {
           Sizda buyurtmalar mavjud emas
         </Typography>
       )}
+      
     </>
   );
 }
